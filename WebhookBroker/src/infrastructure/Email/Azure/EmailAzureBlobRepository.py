@@ -41,7 +41,7 @@ class EmailAzureBlobRepository(EmailAzureBlobRepositoryInterface):
             self.logger.info(f"[AzureStorageAdapter] Guardando email en Azure Blob: {blob_name}")
             data_to_store = email.dict()
             data_json = json.dumps(data_to_store)
-            await self.container_client.upload_blob(name=blob_name, data=data_json, overwrite=False)
+            await self.container_client.upload_blob(name=blob_name, data=data_json, overwrite=True)
             self.logger.info(f"[AzureStorageAdapter] Email guardado en Azure Blob: {blob_name}")
         except AzureError as e:
             self.logger.error(f"[AzureStorageAdapter] Error al guardar email en Azure Blob: {e}")

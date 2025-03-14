@@ -52,13 +52,13 @@ class EmailConsumer:
                 retries += 1
                 logger.error(f"[EmailConsumer] Error processing email (retry {retries}/{self.max_retries}): {e}")
                 if retries > self.max_retries:
-                    self.handle_exception(email_data, e)
+                    self.handle_exception(email_data)
                     self.consumer.commit()  
                     return
                 else:
                     time.sleep(2 ** retries)
 
-    def handle_exception(self, email_data, exception):
+    def handle_exception(self, email_data):
         logger.error(f"[EmailConsumer] Max retries over, sending email to DLQ")
         try:
             self.dlq_producer.send(self.dlq_topic, email_data)

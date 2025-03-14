@@ -16,16 +16,14 @@ class EmailGrpcClient(EmailGrpcClientInterface):
         """
         Serializa el EmailDomainModel en un EmailRequest proto y llama al método remoto SendEmail.
         """
-        try:
-            # Llamada remota
-            response = self.stub.SendEmail(email_pb2.EmailRequest(
-                id=email.id,
-                subject=email.subject,
-                body=email.body,
-                sender=email.sender,
-                recipients=email.recipients
-            ))
-            print(f"[EmailGrpcClient] Respuesta de MessageAdmin: {response.message}")
-        except Exception as e:
-            print(f"[EmailGrpcClient] Error al enviar el email: {e}")
+        
+        # Llamada remota
+        response = self.stub.SendEmail(email_pb2.EmailRequest(
+            id=email.id,
+            subject=email.subject,
+            body=email.body,
+            sender=email.sender,
+            recipients=email.recipients
+        ))
+        print(f"[EmailGrpcClient] Respuesta de MessageAdmin: {response.message}")
         
