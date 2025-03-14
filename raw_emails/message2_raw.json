@@ -1,0 +1,27 @@
+{
+    "attachments": 0,
+    "subject": "test sample",
+    "charsets": {
+        "to": "UTF-8",
+        "from_": "UTF-8",
+        "subject": "UTF-8",
+        "text": "utf-8",
+        "html": "utf-8"
+    },
+    "dkim": {},
+    "sender_ip": "192.0.2.2",
+    "SPF": "pass",
+    "to": "support@example.com",
+    "text": "Dear Support Team,\n\nI wanted to follow up on my previous message about the application performance issues. It's been a few days and the dashboard is still experiencing significant slowdowns. I've noticed that the issue seems to be worse during peak hours (10 AM - 2 PM).\n\nCould you please provide an update on the investigation? The slow performance is affecting our team's productivity.\n\nBest regards,\nJohn\r\n",
+    "html": "<div dir=\"ltr\">Dear Support Team,<br><br>I wanted to follow up on my previous message about the application performance issues. It's been a few days and the dashboard is still experiencing significant slowdowns. I've noticed that the issue seems to be worse during peak hours (10 AM - 2 PM).<br><br>Could you please provide an update on the investigation? The slow performance is affecting our team's productivity.<br><br>Best regards,<br>John</div>\r\n",
+    "headers": "ARC-Authentication-Results: i=2; mx.google.com; dkim=pass header.i=@example.com header.s=20230601 header.b=abcd1234; spf=none (google.com: sender@example.com does not designate permitted sender hosts) smtp.mailfrom=sender@example.com; dara=pass header.i=@example.com\nARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@example.com header.s=20230601 header.b=abcd1234; spf=none (google.com: sender@example.com does not designate permitted sender hosts) smtp.mailfrom=sender@example.com; dara=pass header.i=@example.com\nARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=example.com; s=arc-20240605; h=to:subject:message-id:date:from:mime-version:dkim-signature:delivered-to; bh=abcd1234; fh=abcd1234; b=abcd1234;",
+    "from_": "John Doe <sender@example.com>",
+    "envelope": {
+        "to": [
+            "recipient@example.com"
+        ],
+        "from_": "noreply+abc=recipient@example.com@example.com"
+    },
+    "attachment_info": {},
+    "content_ids": {}
+}
