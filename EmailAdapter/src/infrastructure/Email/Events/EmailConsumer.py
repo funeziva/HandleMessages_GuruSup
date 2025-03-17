@@ -26,7 +26,8 @@ class EmailConsumer:
             group_id=group_id,
             auto_offset_reset='earliest',
             enable_auto_commit=False,  # Commit manual para controlar el reintento
-            value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+            value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+            api_version=(0, 10, 1)  
         )
 
         self.dlq_producer = KafkaProducer(

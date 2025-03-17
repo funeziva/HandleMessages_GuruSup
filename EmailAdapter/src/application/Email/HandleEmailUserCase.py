@@ -1,6 +1,10 @@
 # src/application/HandleIncomingEmailEventUseCase.py
 import re
+from application.ApplicationException import ApplicationException
 from domain.Email.EmailDomainModel import EmailDomainModel
+from config.Logger_config import get_logger
+
+logger = get_logger(__name__)
 
 def extract_message_id(headers: str) -> str:
     """
@@ -19,10 +23,11 @@ def extract_message_id(headers: str) -> str:
     if match:
         return match.group(1)
     
-    raise ValueError("No se encontró el Message-ID en los headers.")
+    raise ApplicationException("No se encontró el Message-ID en los headers.")
 
 def create_EmailDomainModel(email_data: dict) -> EmailDomainModel:
     subject = email_data.get("subject", "").strip()
+    text = email_data.get("text", "").strip()
     html_body = email_data.get("html", "").strip()
     sender = email_data.get("from_", "").strip()
     recipient = email_data.get("to", "").strip()
@@ -31,11 +36,12 @@ def create_EmailDomainModel(email_data: dict) -> EmailDomainModel:
     try:
         message_id = extract_message_id(headers)
     except Exception as e:
-        raise ValueError(f"Error al procesar los headers: {e}")
+        raise ApplicationException(f"Error al procesar los headers: {e}")
 
     email_domain = EmailDomainModel(
         id=message_id,
         subject=subject,
+        text=text,
         body=html_body,
         sender=sender,
         recipients=[recipient],
@@ -52,5 +58,6 @@ class HandleEmailUserCase:
         
         email_domain = create_EmailDomainModel(email_data)
 
-        print(f"[HandleIncomingEmailEventUseCase] Procesando email con ID: {email_domain.id}")
+        logger.info(f"[HandleIncomingEmailEventUseCase] Procesando email con ID: {email_domain.id}")
+        logger.info(f"[HandleIncomingEmailEventUseCase] Enviando email a MessageAdmin: {email_domain}")
         self.grpc_client.send_email_to_message_admin(email_domain)

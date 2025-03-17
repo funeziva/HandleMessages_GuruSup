@@ -9,7 +9,7 @@ from infrastructure.api.Email.EmailControllerRequest import EmailControllerReque
 from infrastructure.Email.Dependencies.GetHandleEmailUserCase import get_HandleEmailUserCase
 
 EmailRouter = APIRouter(prefix="/v1/email", tags=["Email"])
-logger = get_logger("uvicorn")
+logger = get_logger(__name__)
 
 @EmailRouter.post("/webhook", status_code=status.HTTP_200_OK)
 async def receive_email_webhook(

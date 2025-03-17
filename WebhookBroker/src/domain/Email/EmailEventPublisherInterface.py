@@ -7,5 +7,4 @@ class EmailEventPublisherInterface(ABC):
         """
         Publica un evento con la información del email.
         """
-        print("[EmailEventPublisher] Publicando evento de email:", email)
         pass

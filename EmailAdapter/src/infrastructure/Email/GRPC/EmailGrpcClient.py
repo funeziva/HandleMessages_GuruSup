@@ -4,6 +4,9 @@ import grpc
 from infrastructure.Email.GRPC.generated import email_pb2_grpc, email_pb2  # Importamos los stubs generados
 from domain.Email.EmailGrpcClientInterface import EmailGrpcClientInterface
 from domain.Email.EmailDomainModel import EmailDomainModel
+from config.Logger_config import get_logger
+
+logger = get_logger(__name__)
 
 class EmailGrpcClient(EmailGrpcClientInterface):
     def __init__(self, host="localhost", port=50051):
@@ -25,5 +28,5 @@ class EmailGrpcClient(EmailGrpcClientInterface):
             sender=email.sender,
             recipients=email.recipients
         ))
-        print(f"[EmailGrpcClient] Respuesta de MessageAdmin: {response.message}")
+        logger.info(f"[EmailGrpcClient] Respuesta de MessageAdmin: {response.message}")
         

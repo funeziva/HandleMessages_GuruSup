@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional
+from src.domain.DomainException import DomainException
 
 @dataclass
 class EmailDomainModel:
@@ -7,17 +8,20 @@ class EmailDomainModel:
     subject: str
     body: str
     sender: str
+    text: str
     recipients: List[str] = field(default_factory=list)
     # attachments: List[str] = field(default_factory=list)
 
     def __post_init__(self):
         if not self.id:
-            raise ValueError("El campo 'id' es obligatorio.")
+            raise DomainException("El campo 'id' es obligatorio.")
+        if not self.text:
+            raise DomainException("El campo 'text' es obligatorio.")
         if not self.subject:
-            raise ValueError("El campo 'subject' es obligatorio.")
+            raise DomainException("El campo 'subject' es obligatorio.")
         if not self.body:
-            raise ValueError("El campo 'body' es obligatorio.")
+            raise DomainException("El campo 'body' es obligatorio.")
         if not self.sender:
-            raise ValueError("El campo 'sender' es obligatorio.")
+            raise DomainException("El campo 'sender' es obligatorio.")
         if not self.recipients:
-            raise ValueError("El campo 'recipients' es obligatorio.")
+            raise DomainException("El campo 'recipients' es obligatorio.")
