@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from infrastructure.api.RouterManager import RouterManager
-from config.Logger_config import get_logger
 
 app = FastAPI()
 

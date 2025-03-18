@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
-from src.domain.DomainException import DomainException
+from typing import List
+from domain.DomainException import DomainException
 
 @dataclass
 class EmailDomainModel:
