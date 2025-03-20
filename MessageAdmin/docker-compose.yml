@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: message_admin_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=message_admin
+    restart: unless-stopped
+    healthcheck:
+      test: mongosh --eval 'db.adminCommand("ping")' > /dev/null
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Para activar el servicio MessageAdmin, elimina los comentarios de estas líneas
+  # message_admin_service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: message_admin_app
+  #   ports:
+  #     - "50051:50051"  # Puerto gRPC
+  #     - "8000:8000"    # Puerto API
+  #   depends_on:
+  #     mongodb:
+  #       condition: service_healthy
+  #   environment:
+  #     - MONGODB_URI=mongodb://mongodb:27017
+  #     - MONGODB_DB=message_admin
+  #     - OPENAI_API_KEY=${OPENAI_API_KEY}
+  #     - OPENAI_MODEL=${OPENAI_MODEL}
+  #     - OPENAI_TIMEOUT=${OPENAI_TIMEOUT}
+  #   volumes:
+  #     - ./src:/app/src
+
+volumes:
+  mongodb_data:
+    driver: local 

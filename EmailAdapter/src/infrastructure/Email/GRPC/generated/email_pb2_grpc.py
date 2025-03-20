@@ -35,7 +35,7 @@ class EmailServiceStub(object):
             channel: A grpc.Channel.
         """
         self.SendEmail = channel.unary_unary(
-                '/email.EmailService/SendEmail',
+                '/message.EmailService/SendEmail',
                 request_serializer=email__pb2.EmailRequest.SerializeToString,
                 response_deserializer=email__pb2.EmailResponse.FromString,
                 _registered_method=True)
@@ -60,9 +60,9 @@ def add_EmailServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'email.EmailService', rpc_method_handlers)
+            'message.EmailService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('email.EmailService', rpc_method_handlers)
+    server.add_registered_method_handlers('message.EmailService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -83,7 +83,7 @@ class EmailService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/email.EmailService/SendEmail',
+            '/message.EmailService/SendEmail',
             email__pb2.EmailRequest.SerializeToString,
             email__pb2.EmailResponse.FromString,
             options,

@@ -24,9 +24,14 @@ class EmailGrpcClient(EmailGrpcClientInterface):
         response = self.stub.SendEmail(email_pb2.EmailRequest(
             id=email.id,
             subject=email.subject,
-            body=email.body,
+            body=email.text,
             sender=email.sender,
             recipients=email.recipients
         ))
-        logger.info(f"[EmailGrpcClient] Respuesta de MessageAdmin: {response.message}")
+        
+        # Comprobar si la solicitud fue exitosa
+        if response.success:
+            logger.info(f"[EmailGrpcClient] Respuesta exitosa de MessageAdmin: {response.message}")
+        else:
+            logger.error(f"[EmailGrpcClient] Error en MessageAdmin: {response.message}")
         

@@ -24,17 +24,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x65mail.proto\x12\x05\x65mail\"]\n\x0c\x45mailRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07subject\x18\x02 \x01(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\t\x12\x0e\n\x06sender\x18\x04 \x01(\t\x12\x12\n\nrecipients\x18\x05 \x03(\t\" \n\rEmailResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2F\n\x0c\x45mailService\x12\x36\n\tSendEmail\x12\x13.email.EmailRequest\x1a\x14.email.EmailResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x65mail.proto\x12\x07message\"]\n\x0c\x45mailRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0f\n\x07subject\x18\x02 \x01(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\t\x12\x0e\n\x06sender\x18\x04 \x01(\t\x12\x12\n\nrecipients\x18\x05 \x03(\t\"1\n\rEmailResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x32J\n\x0c\x45mailService\x12:\n\tSendEmail\x12\x15.message.EmailRequest\x1a\x16.message.EmailResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'email_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_EMAILREQUEST']._serialized_start=22
-  _globals['_EMAILREQUEST']._serialized_end=115
-  _globals['_EMAILRESPONSE']._serialized_start=117
-  _globals['_EMAILRESPONSE']._serialized_end=149
-  _globals['_EMAILSERVICE']._serialized_start=151
-  _globals['_EMAILSERVICE']._serialized_end=221
+  _globals['_EMAILREQUEST']._serialized_start=24
+  _globals['_EMAILREQUEST']._serialized_end=117
+  _globals['_EMAILRESPONSE']._serialized_start=119
+  _globals['_EMAILRESPONSE']._serialized_end=168
+  _globals['_EMAILSERVICE']._serialized_start=170
+  _globals['_EMAILSERVICE']._serialized_end=244
 # @@protoc_insertion_point(module_scope)

@@ -1,0 +1,8 @@
+grpcio==1.71.0
+grpcio-tools==1.71.0
+pydantic==2.10.6
+pydantic-settings==2.8.1
+fastapi==0.115.11
+uvicorn==0.34.0
+motor==3.7.0
+openai==1.66.5 

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package message;
+
+service EmailService {
+  rpc SendEmail (EmailRequest) returns (EmailResponse);
+}
+
+// Mensaje de solicitud de email
+message EmailRequest {
+  string id = 1;
+  string subject = 2;
+  string body = 3;
+  string sender = 4;
+  repeated string recipients = 5;
+}
+
+// Mensaje de respuesta de email
+message EmailResponse {
+  string message = 1;
+  bool success = 2;
+}
+
+service WhatsAppService {
+  rpc SendWhatsApp (WhatsAppRequest) returns (WhatsAppResponse);
+}
+
+// Mensaje de solicitud de WhatsApp
+message WhatsAppRequest {
+  string id = 1;
+  string body = 2;
+  string sender = 3;
+  string recipient = 4;
+}
+
+// Mensaje de respuesta de WhatsApp
+message WhatsAppResponse {
+  string message = 1;
+  bool success = 2;
+} 
